@@ -421,6 +421,17 @@
   box-shadow: 0 12px 30px rgba(255, 112, 41, 0.3);
 }
 
+.service-header {
+  flex-grow: 0;
+  margin-bottom: 1.5rem;
+}
+
+.service-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .service-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -440,26 +451,28 @@
   margin-bottom: 1.5rem;
 }
 
-.service-features {
-  flex-grow: 1;
-  margin: 1.5rem 0;
-  text-align: left;
+.service-subtitle {
+  font-style: italic;
+  color: var(--text-light);
 }
 
-.service-features h4 {
+.service-heading {
   color: var(--secondary-orange);
   font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.75rem !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.service-features ul {
+.service-features-list {
   list-style: none;
   padding: 0;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
-.service-features li {
+.service-features-list li {
   padding: 0.3rem 0;
   color: var(--text-light);
   font-size: 0.85rem;
@@ -467,27 +480,48 @@
   align-items: center;
 }
 
-.service-features li:before {
+.service-features-list li:before {
   content: '•';
   color: var(--secondary-orange);
   margin-right: 0.5rem;
 }
 
-.learn-more {
+.service-more-btn {
   background: transparent;
   border: 1px solid var(--secondary-orange);
   color: var(--secondary-orange);
-  padding: 0.5rem 1rem;
+  padding: 0.65rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
   font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  text-decoration: none;
+  align-self: center;
 }
 
-.learn-more:hover {
+.service-more-btn:hover {
   background: var(--secondary-orange);
   color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 112, 41, 0.3);
+}
+
+.service-details {
+  padding: 1.5rem;
+  background: rgba(255, 112, 41, 0.05);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.service-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 /* Service Process */

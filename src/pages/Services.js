@@ -1,49 +1,55 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Pages.css';
 
 const Services = () => {
+
   const services = [
     {
-      id: 'cloud',
-      title: 'Cloud Consulting',
-      icon: '☁️',
-      description: 'Migrate, optimize, and manage your cloud infrastructure with expert guidance.',
-      features: ['Cloud architecture design', 'Migration strategy', 'Cost optimization', 'Multi-cloud management'],
+      id: 'admissions',
+      icon: '🎓',
+      title: 'Admissions (Domestic & International)',
+      subtitle: '"Your journey to the right college starts with the right guidance."',
+      heading: 'What we provide',
+      features: [
+        'College & course shortlisting',
+        'Domestic & international admission support',
+        'Application, SOP & LOR assistance',
+        'Entrance & interview guidance',
+        'Verified college info & direct links',
+      ],
+      details: 'Our admissions experts guide you through every step of the application process. From college selection to final enrollment, we ensure you make informed decisions aligned with your career goals and aspirations.',
     },
     {
-      id: 'digital',
-      title: 'Digital Transformation',
-      icon: '🔄',
-      description: 'Modernize your business processes with cutting-edge technology solutions.',
-      features: ['Process optimization', 'Legacy system modernization', 'Automation', 'Business model innovation'],
+      id: 'counselling',
+      icon: '🧠',
+      title: 'Counselling & Career Guidance',
+      subtitle: '"Clarity today creates confidence tomorrow."',
+      heading: 'What we provide',
+      features: [
+        '1-on-1 expert counselling',
+        'Course & career planning',
+        'UG / PG / Abroad guidance',
+        'Scholarship & fee insights',
+        'Google Meet sessions',
+        'Parent counselling support',
+      ],
+      details: 'Personalized career counselling tailored to your aspirations and circumstances. Our experts help you navigate education options, plan your academic journey, and unlock scholarship opportunities for your success.',
     },
     {
-      id: 'development',
-      title: 'Custom Development',
-      icon: '💻',
-      description: 'Build tailored software solutions that drive your business forward.',
-      features: ['Full-stack development', 'Mobile applications', 'Enterprise solutions', 'API development'],
-    },
-    {
-      id: 'data',
-      title: 'Data Analytics',
-      icon: '📊',
-      description: 'Unlock insights from your data to make informed business decisions.',
-      features: ['Business intelligence', 'Data warehousing', 'Predictive analytics', 'Real-time dashboards'],
-    },
-    {
-      id: 'security',
-      title: 'Cybersecurity',
-      icon: '🔒',
-      description: 'Protect your assets with comprehensive security solutions and strategies.',
-      features: ['Security audits', 'Compliance management', 'Threat detection', 'Incident response'],
-    },
-    {
-      id: 'ai',
-      title: 'AI & Machine Learning',
-      icon: '🤖',
-      description: 'Leverage AI to automate processes and enhance decision-making.',
-      features: ['ML model development', 'Process automation', 'NLP solutions', 'Predictive algorithms'],
+      id: 'freelance',
+      icon: '✨',
+      title: 'Freelance & Student Support Services',
+      subtitle: '"Helping you grow beyond the classroom."',
+      heading: 'What we provide',
+      features: [
+        'Freelance project assistance',
+        'Resume & portfolio improvement',
+        'Academic presentation help',
+        'Skill & internship guidance',
+        'Professional writing support',
+      ],
+      details: 'Beyond classroom learning, we help you build real-world skills, create compelling portfolios, and land internships or freelance opportunities to accelerate your professional career growth.',
     },
   ];
 
@@ -52,24 +58,32 @@ const Services = () => {
       <section className="content-section">
         <h1>Our Services</h1>
         <p className="section-intro">
-          Comprehensive IT solutions tailored to drive your digital transformation journey
+          Comprehensive support for your educational and career journey
         </p>
 
         <div className="services-grid">
           {services.map((service) => (
             <div key={service.id} className="service-card">
-              <div className="service-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <div className="service-features">
-                <h4>What's Included:</h4>
-                <ul>
+              <div className="service-header">
+                <h3>
+                  <span className="service-icon">{service.icon}</span>
+                  {service.title}
+                </h3>
+                {service.subtitle && <p className="service-subtitle">{service.subtitle}</p>}
+              </div>
+
+              <div className="service-body">
+                <p className="service-heading">{service.heading}</p>
+                <ul className="service-features-list">
                   {service.features.map((feature, idx) => (
                     <li key={idx}>{feature}</li>
                   ))}
                 </ul>
+
+                <Link to={`/services/${service.id}`} className="service-more-btn">
+                  🔘 MORE
+                </Link>
               </div>
-              <button className="learn-more">Learn More →</button>
             </div>
           ))}
         </div>
@@ -81,25 +95,25 @@ const Services = () => {
             <div className="process-step">
               <div className="step-number">1</div>
               <h4>Discovery & Assessment</h4>
-              <p>In-depth analysis of your current systems, challenges, and business objectives</p>
+              <p>Understanding your goals and current situation</p>
             </div>
             <div className="process-arrow">→</div>
             <div className="process-step">
               <div className="step-number">2</div>
               <h4>Strategy Development</h4>
-              <p>Comprehensive roadmap aligned with your business goals and timelines</p>
+              <p>Creating a personalized roadmap for success</p>
             </div>
             <div className="process-arrow">→</div>
             <div className="process-step">
               <div className="step-number">3</div>
               <h4>Implementation</h4>
-              <p>Agile execution with regular milestones and transparent communication</p>
+              <p>Executing the plan with regular support</p>
             </div>
             <div className="process-arrow">→</div>
             <div className="process-step">
               <div className="step-number">4</div>
-              <h4>Optimization</h4>
-              <p>Continuous monitoring, support, and optimization for maximum ROI</p>
+              <h4>Success & Growth</h4>
+              <p>Continuous guidance and optimization</p>
             </div>
           </div>
         </div>
