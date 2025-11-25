@@ -1,0 +1,23 @@
+.hexagon-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+  z-index: 1;
+  opacity: 0.2;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hexagon-canvas.visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .hexagon-canvas {
+    opacity: 0.1;
+  }
+
+  .hexagon-canvas.visible {
+    opacity: 0.5;
+  }
+}

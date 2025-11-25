@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechMatch - Hexagon Grid Background</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background: #2a2828;
+        overflow-x: hidden;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      /* Hexagon Background Canvas */
+      canvas {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: transparent;
+        z-index: 1;
+        opacity: 0.2;
+        transition: opacity 1.5s ease-in-out;
+      }
+
+      canvas.visible {
+        opacity: 1;
+      }
+
+      /* Intro Video Container */
+      .intro-video-container {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 1.2s ease-in-out, visibility 1.2s;
+        visibility: visible;
+      }
+
+      .intro-video-container.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .intro-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Skip Button (Optional) */
+      .skip-intro {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        z-index: 11;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .skip-intro:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 112, 41, 0.5);
+      }
+
+      /* Main Content Container */
+      .main-content {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1.2s ease-in-out 0.3s, visibility 1.2s 0.3s;
+        overflow-y: auto;
+      }
+
+      .main-content.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Content Sections */
+      .content-section {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        color: #868686;
+      }
+
+      .content-section h1 {
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+
+      /* Loading State */
+      .loading-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .loading-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hexagon Background Canvas (Always Running) -->
+    <canvas id="hexCanvas"></canvas>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div style="color: #868686; font-size: 1.2rem;">Loading...</div>
+    </div>
+
+    <!-- Intro Video Container -->
+    <div class="intro-video-container" id="introVideoContainer">
+      <video
+        class="intro-video"
+        id="introVideo"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+      >
+        <!-- Replace with your video path -->
+        <source src= "C:\Users\kanth\OneDrive\Desktop\TechMatch\backgrounds\TechMatch Logo Animation.mp4" type="video/mp4" />
+        <source src="" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
+      <button class="skip-intro" id="skipIntroBtn">Skip Intro</button>
+    </div>
+
+    <!-- Main Content (Hidden Initially) -->
+    <div class="main-content" id="mainContent">
+      <div class="content-section">
+        <h1></h1>
+        <!-- Add your website content here -->
+      </div>
+    </div>
+
+    <script>
+      // ============================================
+      // INTRO VIDEO & TRANSITION HANDLING
+      // ============================================
+      const introVideo = document.getElementById("introVideo");
+      const introVideoContainer = document.getElementById("introVideoContainer");
+      const mainContent = document.getElementById("mainContent");
+      const skipIntroBtn = document.getElementById("skipIntroBtn");
+      const loadingOverlay = document.getElementById("loadingOverlay");
+      const hexCanvas = document.getElementById("hexCanvas");
+
+      let hasTransitioned = false;
+
+      const transitionToMainContent = () => {
+        if (hasTransitioned) return;
+        hasTransitioned = true;
+
+        // Hide intro video
+        introVideoContainer.classList.add("hidden");
+
+        // Show hexagon background at full opacity
+        setTimeout(() => {
+          hexCanvas.classList.add("visible");
+        }, 300);
+
+        // Show main content
+        setTimeout(() => {
+          mainContent.classList.add("visible");
+          document.body.style.overflow = "auto";
+        }, 500);
+
+        // Hide loading overlay
+        loadingOverlay.classList.add("hidden");
+      };
+
+      // Handle video end
+      introVideo.addEventListener("ended", () => {
+        transitionToMainContent();
+      });
+
+      // Handle video error (fallback if video doesn't load)
+      introVideo.addEventListener("error", () => {
+        console.warn("Video failed to load, transitioning to main content");
+        transitionToMainContent();
+      });
+
+      // Skip button functionality
+      skipIntroBtn.addEventListener("click", () => {
+        introVideo.pause();
+        transitionToMainContent();
+      });
+
+      // Hide loading overlay when video starts playing
+      introVideo.addEventListener("play", () => {
+        setTimeout(() => {
+          loadingOverlay.classList.add("hidden");
+        }, 500);
+      });
+
+      // ============================================
+      // HEXAGON GRID ANIMATION
+      // ============================================
+      const canvas = hexCanvas;
+      const ctx = canvas.getContext("2d");
+      const colorPalette = [
+        "rgba(15, 15, 15, 0.65)",
+        "rgba(255, 112, 41, 0.55)",
+        "rgba(255, 164, 98, 0.45)",
+        "rgba(120, 120, 120, 0.4)",
+        "rgba(80, 78, 78, 0.55)",
+        "rgba(255, 250, 255, 0.55)",
+      ];
+
+      const state = {
+        nodes: [],
+        connections: [],
+        hexRadius: 100,
+        pointer: {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          isActive: false,
+        },
+        wave: {
+          frequency: 0.01,
+          speed: 0.003,
+          decay: 240,
+          strength: 16,
+          radius: 100,
+        },
+      };
+
+      const resizeCanvas = () => {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerHeight + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        buildGrid();
+      };
+
+      const buildGrid = () => {
+        const { hexRadius } = state;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const horizontalSpacing = Math.sqrt(2) * hexRadius;
+        const verticalSpacing = 1.0 * hexRadius;
+
+        state.nodes = [];
+        state.connections = [];
+
+        let rowIndex = 0;
+        const grid = [];
+
+        for (
+          let y = -hexRadius;
+          y < height + hexRadius;
+          y += verticalSpacing, rowIndex++
+        ) {
+          const row = [];
+          const offset = (rowIndex % 2) * (horizontalSpacing / 2);
+          let colIndex = 0;
+
+          for (
+            let x = -horizontalSpacing;
+            x < width + horizontalSpacing;
+            x += horizontalSpacing, colIndex++
+          ) {
+            const node = {
+              baseX: x + offset,
+              baseY: y,
+              x: x + offset,
+              y: y,
+              row: rowIndex,
+              col: colIndex,
+              driftRadius: 4 + Math.random() * 4,
+              driftAngle: Math.random() * Math.PI * 2,
+              speed: 0.4 + Math.random() * 0.4,
+              hexScale: 0.4 + Math.random() * 0.9,
+              hexColor:
+                colorPalette[Math.floor(Math.random() * colorPalette.length)],
+            };
+
+            row.push(node);
+            state.nodes.push(node);
+          }
+
+          grid.push(row);
+        }
+
+        for (const row of grid) {
+          for (const node of row) {
+            const { row: r, col: c } = node;
+            const east = grid[r]?.[c + 1];
+            const southRow = grid[r + 1];
+            const isOdd = r % 2 === 1;
+
+            const southEast = isOdd ? southRow?.[c + 1] : southRow?.[c];
+            const southWest = isOdd ? southRow?.[c] : southRow?.[c - 1];
+
+            if (east) state.connections.push([node, east]);
+            if (southEast) state.connections.push([node, southEast]);
+            if (southWest) state.connections.push([node, southWest]);
+          }
+        }
+      };
+
+      const drawHexagon = (x, y, radius) => {
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = ((Math.PI * 2) / 6) * i + Math.PI / 6;
+          const px = x + radius * Math.cos(angle);
+          const py = y + radius * Math.sin(angle);
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+      };
+
+      let lastTime = 0;
+      const animate = (time) => {
+        const delta = time - lastTime;
+        lastTime = time;
+
+        ctx.save();
+        ctx.globalAlpha = 0.7;
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.restore();
+
+        ctx.save();
+        ctx.translate(0.5, 0.5);
+
+        const waveTime = time;
+        state.nodes.forEach((node) => {
+          node.driftAngle += (node.speed * delta) / 10000;
+          const baseX = node.baseX + Math.cos(node.driftAngle) * node.driftRadius;
+          const baseY = node.baseY + Math.sin(node.driftAngle) * node.driftRadius;
+
+          const dx = baseX - state.pointer.x;
+          const dy = baseY - state.pointer.y;
+          const dist = Math.max(Math.sqrt(dx * dx + dy * dy), 0.001);
+
+          const { frequency, speed, decay, strength } = state.wave;
+          const wave =
+            Math.sin(dist * frequency - waveTime * speed) *
+            Math.exp(-dist / decay) *
+            (state.pointer.isActive ? 1 : 0.5);
+
+          node.x = baseX + (dx / dist) * wave * strength;
+          node.y = baseY + (dy / dist) * wave * strength;
+        });
+
+        ctx.strokeStyle = "rgba(90, 90, 90, 0.2)";
+        ctx.lineWidth = 1;
+        state.connections.forEach(([a, b]) => {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        });
+
+        ctx.lineWidth = 1.2;
+        state.nodes.forEach((node) => {
+          ctx.strokeStyle = node.hexColor;
+          drawHexagon(
+            node.x,
+            node.y,
+            state.hexRadius * 0.3 * node.hexScale
+          );
+          ctx.stroke();
+        });
+
+        ctx.restore();
+        requestAnimationFrame(animate);
+      };
+
+      const updatePointer = (event) => {
+        state.pointer.x = event.clientX;
+        state.pointer.y = event.clientY;
+        state.pointer.isActive = true;
+      };
+
+      const handleLeave = () => {
+        state.pointer.isActive = false;
+        state.pointer.x = window.innerWidth / 2;
+        state.pointer.y = window.innerHeight / 2;
+      };
+
+      // Initialize hexagon grid
+      resizeCanvas();
+      requestAnimationFrame(animate);
+      window.addEventListener("resize", resizeCanvas);
+      window.addEventListener("pointermove", updatePointer);
+      window.addEventListener("pointerdown", updatePointer);
+      window.addEventListener("pointerup", handleLeave);
+      window.addEventListener("pointerleave", handleLeave);
+
+      // Prevent body scroll during intro
+      document.body.style.overflow = "hidden";
+
+      // Fallback: If video doesn't start after 3 seconds, transition anyway
+      setTimeout(() => {
+        if (!hasTransitioned && introVideo.readyState < 2) {
+          console.warn("Video taking too long, transitioning to main content");
+          transitionToMainContent();
+        }
+      }, 3000);
+    </script>
+  </body>
+</html>
+

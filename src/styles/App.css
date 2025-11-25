@@ -1,0 +1,25 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.app.ready {
+  opacity: 1;
+}
+
+.main-content-wrapper {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+/* Smooth page transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .app {
+    transition: opacity 0.3s ease;
+  }
+}
