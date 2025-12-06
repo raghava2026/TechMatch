@@ -273,9 +273,9 @@ const ServiceDetails = () => {
           <span className="hero-icon">{service.icon}</span>
           <h1 style={{ color: service.color }}>{service.title}</h1>
           <p className="hero-tagline">{service.tagline}</p>
-          <button className="cta-button" onClick={() => navigate('/contact')}>
+          <a href="https://techmatch-call-flow.lovable.app"  rel="noopener noreferrer" className="cta-button">
             Get Started Today
-          </button>
+          </a>
         </div>
       </section>
 

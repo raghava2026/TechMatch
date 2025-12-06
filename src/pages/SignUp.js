@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { signInWithGoogle, signupWithEmail, setupRecaptcha, sendPhoneOtp, confirmPhoneOtp } from '../firebase';
+import { signInWithGoogle, signupWithEmail, setupRecaptcha, sendPhoneOtp, confirmPhoneOtp, sendPhoneOtpForLinking, confirmPhoneOtpForLinking } from '../firebase';
 import '../styles/Pages.css';
 
 const SignUp = () => {
@@ -12,6 +12,7 @@ const SignUp = () => {
   const [otpCode, setOtpCode] = useState('');
   const [acceptedTOS, setAcceptedTOS] = useState(false);
   const [confirmationResult, setConfirmationResult] = useState(null);
+  const [linkingFor, setLinkingFor] = useState(null); // 'social' | 'email' | null
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [method, setMethod] = useState('email'); // 'email' or 'phone'
@@ -20,8 +21,16 @@ const SignUp = () => {
   const handleGoogle = async () => {
     setLoading(true);
     try {
-      await signInWithGoogle();
-      navigate('/dashboard');
+      const res = await signInWithGoogle();
+      // If Google account already has a phone number, proceed. Otherwise ask to link phone.
+      if (res?.user?.phoneNumber) {
+        navigate('/dashboard');
+      } else {
+        // prompt user to add a phone number and link it
+        setLinkingFor('social');
+        setMethod('phone');
+        setError(null);
+      }
     } catch (err) {
       setError(err.message || String(err));
     } finally {
@@ -41,13 +50,22 @@ const SignUp = () => {
     }
     setLoading(true);
     try {
+      // Create account first
       await signupWithEmail(email, password, displayName, { 
         requireEmailVerification: true, 
         role: 'student', 
         acceptedTOS: true 
       });
-      setSuccessMessage('Account created! Redirecting to dashboard...');
-      setTimeout(() => navigate('/dashboard'), 2000);
+      // If user provided a phone number during signup, prompt linking flow, otherwise redirect
+      if (phone && phone.trim()) {
+        setLinkingFor('email');
+        setMethod('phone');
+        setError(null);
+        setSuccessMessage('Account created. Please verify your phone to complete setup.');
+      } else {
+        setSuccessMessage('Account created! Redirecting to dashboard...');
+        setTimeout(() => navigate('/dashboard'), 2000);
+      }
     } catch (err) {
       setError(err.message || String(err));
     } finally {
@@ -60,7 +78,13 @@ const SignUp = () => {
     setLoading(true);
     try {
       setupRecaptcha('recaptcha-container');
-      const res = await sendPhoneOtp(phone, 'recaptcha-container');
+      let res;
+      if (linkingFor) {
+        // use linking flow for existing authenticated user
+        res = await sendPhoneOtpForLinking(phone, 'recaptcha-container');
+      } else {
+        res = await sendPhoneOtp(phone, 'recaptcha-container');
+      }
       setConfirmationResult(res);
       setError(null);
     } catch (err) {
@@ -74,9 +98,15 @@ const SignUp = () => {
     setLoading(true);
     try {
       if (!confirmationResult) throw new Error('No OTP request found');
-      await confirmPhoneOtp(confirmationResult, otpCode);
+      if (linkingFor) {
+        await confirmPhoneOtpForLinking(confirmationResult, otpCode);
+      } else {
+        await confirmPhoneOtp(confirmationResult, otpCode);
+      }
       setSuccessMessage('Phone verified! Redirecting to dashboard...');
-      setTimeout(() => navigate('/dashboard'), 2000);
+      // cleanup linking state
+      setLinkingFor(null);
+      setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err) {
       setError(err.message || String(err));
     } finally {

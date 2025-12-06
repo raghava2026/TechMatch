@@ -4,93 +4,141 @@ import '../styles/Pages.css';
 const About = () => {
   return (
     <div className="page-container about-page">
-      <section className="content-section">
-        <h1>About TechMatch</h1>
-
-        {/* Main Content */}
-        <div className="content-grid">
-          <div className="content-block highlight">
-            <h2>Who We Are</h2>
-            <p>
-              TechMatch is a premier IT consultancy firm specializing in digital transformation, cloud solutions,
-              and custom software development. With over 15 years of industry experience, we've successfully guided
-              150+ organizations through their digital journeys, from Fortune 500 enterprises to innovative startups.
+      <section className="content-section about-hero" aria-labelledby="about-hero-title">
+        <div className="about-hero-inner">
+          <div className="about-hero-text">
+            <h1 id="about-hero-title">About TechMatch</h1>
+            <p className="lead">
+              We help organizations accelerate growth through practical cloud strategies, resilient engineering,
+              and clear delivery. Our approach blends technical excellence with business focus so every project
+              drives measurable results.
             </p>
-            <p>
-              Our team of expert consultants brings deep technical knowledge and strategic business acumen to every
-              project, ensuring that technology investments directly drive business value and competitive advantage.
-            </p>
+            <div className="about-hero-cta">
+              <a className="cta-button primary" href="/services">Our Services</a>
+              <a className="cta-button secondary" href="/contact">Contact Us</a>
+            </div>
           </div>
-
-          <div className="content-block">
-            <h2>Our Vision</h2>
-            <p>
-              To be the most trusted partner for businesses seeking technology-driven growth and operational
-              excellence. We envision a world where organizations leverage technology not just as a tool, but as a
-              strategic catalyst for innovation and sustainable growth.
-            </p>
+          <div className="about-hero-media">
+            <img src="/assets/about-hero.jpg" alt="TechMatch team working together" onError={(e)=>{e.target.style.display='none'}} />
           </div>
+        </div>
+      </section>
 
-          <div className="content-block">
-            <h2>Our Mission</h2>
+      <section className="content-section about-content" aria-labelledby="about-content-title">
+        {/* JSON-LD structured data for Organization and WebPage */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "TechMatch",
+            "url": typeof window !== 'undefined' ? window.location.origin : 'https://example.com',
+            "logo": typeof window !== 'undefined' ? `${window.location.origin}/assets/logo.png` : '/assets/logo.png',
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "telephone": "+1-800-TECH-MATCH",
+              "contactType": "customer service"
+            }]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "About - TechMatch",
+            "description": "TechMatch is a technology consulting firm focused on secure, scalable solutions and cloud transformation",
+            "url": typeof window !== 'undefined' ? window.location.href : 'https://example.com/about'
+          })}
+        </script>
+        <div className="about-content-grid">
+          <article className="about-text">
+            <h2 id="about-content-title">Who we are</h2>
             <p>
-              To bridge the gap between complex technology and business objectives. We're committed to delivering
-              solutions that are not only technically sound but strategically aligned with each client's unique
-              challenges and opportunities.
+              TechMatch is a technology consulting firm focused on delivering secure, scalable, and maintainable
+              solutions. We work with companies of all sizes — from startups to enterprises — to modernize platforms,
+              migrate to cloud, and build customer-facing applications.
             </p>
+            <p>
+              Our teams include certified cloud architects, software engineers, and product-minded strategists who
+              partner with stakeholders to set realistic roadmaps and then deliver with discipline.
+            </p>
+          </article>
+
+          <aside className="about-quick-stats">
+            <div className="stat">
+              <div className="stat-number">15+</div>
+              <div className="stat-label">Years experience</div>
+            </div>
+            <div className="stat">
+              <div className="stat-number">150+</div>
+              <div className="stat-label">Projects delivered</div>
+            </div>
+            <div className="stat">
+              <div className="stat-number">24/7</div>
+              <div className="stat-label">Client support</div>
+            </div>
+          </aside>
+        </div>
+
+        <div className="about-features">
+          <div className="feature-card small">
+            <div className="feature-icon">⚙️</div>
+            <h4>Engineering Excellence</h4>
+            <p>Robust code, repeatable processes, and strong testing practices.</p>
+          </div>
+          <div className="feature-card small">
+            <div className="feature-icon">☁️</div>
+            <h4>Cloud-First</h4>
+            <p>Cost-effective, scalable cloud architecture and migrations.</p>
+          </div>
+          <div className="feature-card small">
+            <div className="feature-icon">🔒</div>
+            <h4>Security</h4>
+            <p>Security embedded into design, infrastructure, and delivery.</p>
           </div>
         </div>
 
-        {/* Values Section */}
-        <div className="values-section">
-          <h2>Core Values</h2>
-          <div className="values-grid">
-            <div className="value-card">
-              <div className="value-icon">🚀</div>
-              <h3>Innovation</h3>
-              <p>Constantly pushing boundaries and embracing emerging technologies to create cutting-edge solutions</p>
+        {/* Team section - professional team cards */}
+        <div className="team-section" aria-labelledby="team-title">
+          <h2 id="team-title">Meet the Team</h2>
+          <p className="section-intro">Our leadership blends engineering, delivery, and security expertise.</p>
+          <div className="team-grid">
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/team1.jpg" alt="Asha Rao, CTO" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Asha Rao</h3>
+                <p className="team-role">CTO</p>
+                <p className="team-bio">Expert in cloud architecture and platform engineering, leading large-scale migrations and platform builds.</p>
+              </div>
             </div>
-            <div className="value-card">
-              <div className="value-icon">⭐</div>
-              <h3>Excellence</h3>
-              <p>Delivering exceptional quality in every project, every interaction, and every deliverable</p>
+
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/team2.jpg" alt="Daniel Kim, Head of Delivery" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Daniel Kim</h3>
+                <p className="team-role">Head of Delivery</p>
+                <p className="team-bio">Focused on execution excellence and client success across enterprise engagements.</p>
+              </div>
             </div>
-            <div className="value-card">
-              <div className="value-icon">🤝</div>
-              <h3>Collaboration</h3>
-              <p>Working closely with clients as true partners, understanding their vision and making it reality</p>
-            </div>
-            <div className="value-card">
-              <div className="value-icon">🛡️</div>
-              <h3>Integrity</h3>
-              <p>Maintaining the highest ethical standards and being transparent in all our business dealings</p>
-            </div>
-            <div className="value-card">
-              <div className="value-icon">💼</div>
-              <h3>Professionalism</h3>
-              <p>Bringing expertise, accountability, and dedication to every engagement and partnership</p>
-            </div>
-            <div className="value-card">
-              <div className="value-icon">🌱</div>
-              <h3>Growth</h3>
-              <p>Investing in continuous learning and development for our team and our clients</p>
+
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/team3.jpg" alt="Maya Singh, Head of Security" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Maya Singh</h3>
+                <p className="team-role">Head of Security</p>
+                <p className="team-bio">Drives secure-by-design programs, compliance and threat modeling for critical systems.</p>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Team Section */}
-        <div className="team-section">
-          <h2>Why Our Clients Choose Us</h2>
-          <ul className="checklist">
-            <li>15+ years of proven industry experience</li>
-            <li>150+ successful projects across diverse industries</li>
-            <li>98% client satisfaction and retention rate</li>
-            <li>Team of certified cloud architects and solution designers</li>
-            <li>End-to-end support from strategy to implementation</li>
-            <li>24/7 dedicated support and maintenance services</li>
-            <li>Flexible engagement models tailored to your needs</li>
-            <li>Proven track record with Fortune 500 companies</li>
-          </ul>
+      <section className="content-section about-cta">
+        <div className="cta-box">
+          <h2>Ready to get started?</h2>
+          <p>Book a free consultation and we’ll map a practical plan for your next digital milestone.</p>
+          <div className="about-hero-cta">
+            <a className="cta-button primary" href="https://techmatch-call-flow.lovable.app" target="_blank" rel="noopener noreferrer">Book Consultation</a>
+          </div>
         </div>
       </section>
     </div>

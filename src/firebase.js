@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signInWithPhoneNumber,
   RecaptchaVerifier,
+  linkWithPhoneNumber,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -171,13 +172,43 @@ export function setupRecaptcha(containerId = "recaptcha-container", size = "invi
   if (_recaptchaVerifier) {
     return _recaptchaVerifier;
   }
-  _recaptchaVerifier = new RecaptchaVerifier(
-    containerId,
-    { size },
-    auth
-  );
-  // render is optional (verifier will be available)
-  _recaptchaVerifier.render?.().catch(() => {});
+  try {
+    // Ensure `auth.settings` exists to avoid SDK internals reading undefined
+    // (some environments or SDK versions may not create this object until used)
+    if (!auth.settings) {
+      // create a minimal settings object that Firebase internals may expect
+      // eslint-disable-next-line no-underscore-dangle
+      try {
+        // Some SDK builds expose a _delegate that holds settings; be conservative
+        auth.settings = {};
+      } catch (e) {
+        // If auth is frozen/immutable, continue — Recaptcha may still work
+      }
+    }
+
+    // Optional: allow disabling app verification in local dev for test flows
+    // Set REACT_APP_FIREBASE_DISABLE_APP_VERIFICATION_FOR_TESTING=true in .env.local
+    if (process.env.REACT_APP_FIREBASE_DISABLE_APP_VERIFICATION_FOR_TESTING === 'true') {
+      try {
+        if (auth.settings) auth.settings.appVerificationDisabledForTesting = true;
+      } catch (e) {
+        // ignore if not writable
+      }
+    }
+
+    _recaptchaVerifier = new RecaptchaVerifier(
+      containerId,
+      { size },
+      auth
+    );
+    // render is optional (verifier will be available)
+    _recaptchaVerifier.render?.().catch(() => {});
+  } catch (err) {
+    // Provide clearer error context to the caller
+    // eslint-disable-next-line no-console
+    console.error('[firebase] setupRecaptcha failed', err);
+    throw err;
+  }
   return _recaptchaVerifier;
 }
 
@@ -192,6 +223,25 @@ export async function confirmPhoneOtp(confirmationResult, code) {
   if (!confirmationResult) throw new Error("No confirmation result");
   const res = await confirmationResult.confirm(code);
   // Save minimal data to Firestore
+  await saveUserToFirestore(res.user, { displayName: res.user.displayName || null });
+  return res;
+}
+
+/* ===== Link phone number to existing signed-in user (OTP) ===== */
+export async function sendPhoneOtpForLinking(phoneNumber, containerId = "recaptcha-container") {
+  const verifier = setupRecaptcha(containerId);
+  if (!verifier) throw new Error("Recaptcha not initialized");
+  if (!auth.currentUser) throw new Error("No authenticated user to link phone to");
+  // linkWithPhoneNumber returns a ConfirmationResult similar to signInWithPhoneNumber
+  const confirmationResult = await linkWithPhoneNumber(auth.currentUser, phoneNumber, verifier);
+  return confirmationResult; // caller must call confirmationResult.confirm(code) to complete linking
+}
+
+export async function confirmPhoneOtpForLinking(confirmationResult, code) {
+  if (!confirmationResult) throw new Error("No confirmation result");
+  // This will complete linking the phone number to the existing user
+  const res = await confirmationResult.confirm(code);
+  // update Firestore record for the linked user
   await saveUserToFirestore(res.user, { displayName: res.user.displayName || null });
   return res;
 }

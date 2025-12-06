@@ -55,8 +55,23 @@ const Navbar = () => {
         <li>
           <Link to="/" onClick={closeMobileMenu}>Home</Link>
         </li>
-        <li>
-          <Link to="/about" onClick={closeMobileMenu}>About</Link>
+        <li
+          className="nav-item-with-submenu"
+          onMouseEnter={() => setActiveMenu('services')}
+          onMouseLeave={() => setActiveMenu(null)}
+        >
+          <Link to="/services">Services</Link>
+          <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
+            <li>
+              <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions</Link>
+            </li>
+            <li>
+              <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
+            </li>
+            <li>
+              <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
+            </li>
+          </ul>
         </li>
         <li
           className="nav-item-with-submenu"
@@ -76,23 +91,9 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
-        <li
-          className="nav-item-with-submenu"
-          onMouseEnter={() => setActiveMenu('services')}
-          onMouseLeave={() => setActiveMenu(null)}
-        >
-          <Link to="/services">Services</Link>
-          <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
-            <li>
-              <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions</Link>
-            </li>
-            <li>
-              <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
-            </li>
-            <li>
-              <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
-            </li>
-          </ul>
+        
+        <li>
+          <Link to="/about" onClick={closeMobileMenu}>About</Link>
         </li>
         <li>
           <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>

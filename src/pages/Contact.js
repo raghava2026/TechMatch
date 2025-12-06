@@ -15,6 +15,24 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [lastSubmittedEmail, setLastSubmittedEmail] = useState('');
+
+  const openMailClient = () => {
+    // Pre-fill an email in user's mail client as a fallback
+    const to = 'techmatch2k25@gmail.com';
+    const subject = encodeURIComponent(formData.subject || 'Contact from TechMatch website');
+    const bodyLines = [
+      `Name: ${formData.name || '(not provided)'}`,
+      `Email: ${formData.email || '(not provided)'}`,
+      `Phone: ${formData.phone || '(not provided)'}`,
+      `Company: ${formData.company || '(not provided)'}`,
+      '',
+      'Message:',
+      formData.message || '(no message)',
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -55,6 +73,12 @@ const Contact = () => {
       // Set REACT_APP_FORMSPREE_ENDPOINT in .env.local to your Formspree form endpoint (e.g. https://formspree.io/f/xyzabcd)
       const FORMSPREE_ENDPOINT = process.env.REACT_APP_FORMSPREE_ENDPOINT || 'https://formspree.io/f/your_form_id';
 
+      // If endpoint is placeholder or missing, instruct user and provide mailto fallback
+      if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.includes('your_form_id')) {
+        setErrors({ submit: 'Contact sending is not configured. Please set REACT_APP_FORMSPREE_ENDPOINT in .env.local to your Formspree endpoint and restart the dev server.' });
+        return;
+      }
+
       setIsLoading(true);
       setErrors({});
 
@@ -75,6 +99,7 @@ const Contact = () => {
 
         if (!resp.ok) throw new Error('Failed to send message');
 
+        setLastSubmittedEmail(formData.email || '');
         setSubmitted(true);
         setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '', service: 'general' });
         setTimeout(() => setSubmitted(false), 5000);
@@ -163,12 +188,23 @@ const Contact = () => {
           <form className="contact-form" onSubmit={handleSubmit} noValidate>
             {submitted && (
               <div className="success-message">
-                ✓ Thank you! Your message has been received at {formData.email}. We'll be in touch soon.
+                ✓ Thank you! Your message has been received{lastSubmittedEmail ? ` at ${lastSubmittedEmail}` : ''}. We'll be in touch soon.
               </div>
             )}
             {errors.submit && (
               <div className="error-message-box">
                 {errors.submit}
+              </div>
+            )}
+            {errors.submit && errors.submit.includes('not configured') && (
+              <div style={{ marginTop: 12, textAlign: 'center' }}>
+                <button
+                  type="button"
+                  className="submit-button"
+                  onClick={openMailClient}
+                >
+                  Send via Email Client
+                </button>
               </div>
             )}
 
