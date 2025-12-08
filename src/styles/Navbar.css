@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  font-size:40px;
   flex-wrap: wrap;
 }
 
@@ -59,6 +60,7 @@
 /* ===== NAV MENU ===== */
 .nav-menu {
   display: flex;
+  font-size: large;
   justify-content: center;
   flex-wrap: wrap;
   list-style: none;
@@ -110,7 +112,8 @@
   visibility: hidden;
   opacity: 0;
   
- 
+ background-color: #f5ac37;
+ border-radius: 5px;
   margin: 0.5rem 0 0 0;
   padding: 0;
   list-style: none;
@@ -137,7 +140,7 @@
 }
 
 .submenu li:hover {
-  background:#ffa91b;
+  background:#ea5b19;
   border: none;
 }
 

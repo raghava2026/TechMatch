@@ -62,38 +62,21 @@ const Navbar = () => {
           >
             <Link to="/services">Services</Link>
             <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
+          <li >
             <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions</Link>
           </li>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
+          <li>
             <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
           </li>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
+          <li>
             <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
           </li>
             </ul>
           </li>
-          <li
-            className="nav-item-with-submenu"
-            onMouseEnter={() => setActiveMenu('testimonials')}
-            onMouseLeave={() => setActiveMenu(null)}
-          >
-            <Link to="/testimonials">Testimonials</Link>
-            <ul className={`submenu ${activeMenu === 'testimonials' ? 'active' : ''}`}>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
-            <Link to="/testimonials" onClick={closeMobileMenu}>All Testimonials</Link>
-          </li>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
-            <Link to="/testimonials" onClick={closeMobileMenu}>Client Stories</Link>
-          </li>
-          <li style={{ backgroundColor: '#ff7d0cff' }}>
-            <Link to="/testimonials" onClick={closeMobileMenu}>Success Cases</Link>
-          </li>
-            </ul>
-          </li>
           <li>
-            <Link to="/" onClick={closeMobileMenu}>Home</Link>
+            <Link to="/testimonials"   onClick={closeMobileMenu}>Testimonials</Link>
           </li>
+          
           <li>
             <Link to="/about" onClick={closeMobileMenu}>About</Link>
           </li>

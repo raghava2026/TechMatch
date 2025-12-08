@@ -105,7 +105,7 @@
 .hero-subtitle {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  color: var(--text-light);
+  color: rgb(209, 205, 205);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -123,7 +123,7 @@
   border: none;
   border-radius: 4px;
   background: var(--secondary-orange);
-  color: var(--bg-light);
+  color:  rgb(209, 205, 205);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -180,7 +180,7 @@
 
 .section-header p {
   font-size: 1.1rem;
-  color: var(--text-light);
+  color: rgb(209, 205, 205);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -203,8 +203,8 @@
 }
 
 .feature-card:hover {
-  background: rgba(255, 112, 41, 0.1);
-  border-color: rgba(255, 112, 41, 0.5);
+  background: rgba(73, 30, 9, 0.586);
+  border-color: rgba(255, 112, 41, 0.656);
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(255, 112, 41, 0.2);
 }
@@ -232,7 +232,7 @@
 }
 
 .feature-card p {
-  color: var(--text-light);
+  color:  rgb(209, 205, 205);
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -268,7 +268,7 @@
 }
 
 .stat-card .stat-label {
-  color: var(--text-light);
+  color:  rgb(209, 205, 205);
   font-size: 0.95rem;
 }
 
@@ -292,7 +292,7 @@
 .cta-section p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
-  color: var(--text-light);
+  color:  rgb(209, 205, 205);
 }
 
 /* ========== ABOUT PAGE ========== */
