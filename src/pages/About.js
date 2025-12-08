@@ -137,7 +137,7 @@ const About = () => {
           <h2>Ready to get started?</h2>
           <p>Book a free consultation and we’ll map a practical plan for your next digital milestone.</p>
           <div className="about-hero-cta">
-            <a className="cta-button primary" href="https://techmatch-call-flow.lovable.app" target="_blank" rel="noopener noreferrer">Book Consultation</a>
+            <a className="cta-button primary" href="https://techmatch-schudling.lovable.app"  rel="noopener noreferrer">Book Consultation</a>
           </div>
         </div>
       </section>

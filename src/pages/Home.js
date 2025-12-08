@@ -95,7 +95,7 @@ const Home = () => {
       <section className="cta-section">
         <h2>Ready to Transform Your Business?</h2>
         <p>Let's work together to achieve your digital transformation goals</p>
-        <a href="https://techmatch-call-flow.lovable.app" className="cta-button large"  rel="noopener noreferrer">
+        <a href="https://techmatch-schudling.lovable.app" className="cta-button large"  rel="noopener noreferrer">
           Schedule a Consultation Today
         </a>
       </section>

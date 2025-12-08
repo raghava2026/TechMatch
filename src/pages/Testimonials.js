@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/Pages.css';
 
 const Testimonials = () => {
@@ -9,7 +8,7 @@ const Testimonials = () => {
       name: 'John Smith',
       role: 'CEO, Fortune 500 Company',
       company: 'Global Tech Corp',
-      image: 'https://via.placeholder.com/150?text=John+Smith',
+      image: '',
       text: 'TechMatch transformed our entire IT infrastructure. Their expertise and dedication were instrumental in our digital transformation journey.',
       rating: 5,
     },
@@ -18,7 +17,7 @@ const Testimonials = () => {
       name: 'Sarah Johnson',
       role: 'CTO, StartUp Innovations',
       company: 'StartUp Innovations',
-      image: 'https://via.placeholder.com/150?text=Sarah+Johnson',
+      image: '',
       text: 'Working with TechMatch was a game-changer. They understood our vision and delivered solutions that exceeded our expectations.',
       rating: 5,
     },
@@ -27,7 +26,7 @@ const Testimonials = () => {
       name: 'Michael Chen',
       role: 'Enterprise Director',
       company: 'Enterprise Solutions Ltd',
-      image: 'https://via.placeholder.com/150?text=Michael+Chen',
+      image: '',
       text: 'The professionalism and technical knowledge of the TechMatch team is unparalleled. Highly recommended for any enterprise-level project.',
       rating: 5,
     },
@@ -36,7 +35,7 @@ const Testimonials = () => {
       name: 'Emma Wilson',
       role: 'Startup Founder',
       company: 'EdTech Pioneers',
-      image: 'https://via.placeholder.com/150?text=Emma+Wilson',
+      image: '',
       text: 'TechMatch helped us scale our startup from idea to a fully operational platform. Their consultancy was invaluable.',
       rating: 5,
     },
@@ -45,7 +44,7 @@ const Testimonials = () => {
       name: 'David Kumar',
       role: 'IT Manager',
       company: 'Financial Services Inc',
-      image: 'https://via.placeholder.com/150?text=David+Kumar',
+      image: '',
       text: 'The team\'s attention to detail and commitment to delivery timelines impressed us. We couldn\'t ask for better partners.',
       rating: 5,
     },
@@ -54,7 +53,7 @@ const Testimonials = () => {
       name: 'Lisa Anderson',
       role: 'Project Lead',
       company: 'Healthcare Digital',
-      image: 'https://via.placeholder.com/150?text=Lisa+Anderson',
+      image: '',
       text: 'TechMatch brought fresh perspectives to our challenges and delivered innovative solutions. Truly a game-changer!',
       rating: 5,
     },
@@ -85,11 +84,17 @@ const Testimonials = () => {
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="testimonial-card">
                 <div className="testimonial-header">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="testimonial-avatar"
-                  />
+                  {testimonial.image ? (
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="testimonial-avatar"
+                    />
+                  ) : (
+                    <div className="testimonial-avatar placeholder">
+                      {testimonial.name.charAt(0).toUpperCase()}
+                    </div>
+                  )}
                   <div className="testimonial-info">
                     <h3 className="testimonial-name">{testimonial.name}</h3>
                     <p className="testimonial-role">{testimonial.role}</p>
@@ -110,9 +115,9 @@ const Testimonials = () => {
       <section className="cta-section" style={{ textAlign: 'center' }}>
         <h2>Ready to Be Our Next Success Story?</h2>
         <p>Let's discuss how TechMatch can transform your business</p>
-        <Link to="/contact" className="cta-button large">
+        <a href="https://techmatch-schudling.lovable.app" target="_blank" rel="noopener noreferrer" className="cta-button large">
           Start Your Journey Today
-        </Link>
+        </a>
       </section>
     </div>
   );

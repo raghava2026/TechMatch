@@ -19,10 +19,10 @@ const Footer = () => {
                 <span>𝕏</span>
               </a>
               <a href="https://github.com/techmatch" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <span>⚙️</span>
+                <span>⚙</span>
               </a>
               <a href="mailto:techmatch2k25@gmail.com" aria-label="Email">
-                <span>✉️</span>
+                <span>✉</span>
               </a>
             </div>
           </div>
@@ -40,7 +40,7 @@ const Footer = () => {
                 <a href="/services">Services</a>
               </li>
               <li>
-                <a href="/clients">Clients</a>
+                <a href="/testimonials">Testimonials</a>
               </li>
             </ul>
           </div>
@@ -49,16 +49,14 @@ const Footer = () => {
             <h4>Services</h4>
             <ul>
               <li>
-                <a href="/services#cloud">Cloud Consulting</a>
+                <a href="/services/admissions">Admissions</a>
               </li>
               <li>
-                <a href="/services#digital">Digital Transformation</a>
+                <a href="/services/counselling">Counselling</a>
               </li>
+              
               <li>
-                <a href="/services#development">Custom Development</a>
-              </li>
-              <li>
-                <a href="/services#ai">AI & Machine Learning</a>
+                <a href="/services/freelance">Freelance</a>
               </li>
             </ul>
           </div>

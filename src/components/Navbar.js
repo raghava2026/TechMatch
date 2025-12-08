@@ -42,65 +42,67 @@ const Navbar = () => {
       </div>
 
       {/* Hamburger Menu Icon - Mobile */}
-      <button 
-        className="hamburger-menu" 
+      <button
+        className="hamburger-menu"
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         aria-label="Toggle menu"
       >
         {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
 
-      {/* Navigation Menu */}
-      <ul className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-        <li>
-          <Link to="/" onClick={closeMobileMenu}>Home</Link>
-        </li>
-        <li
-          className="nav-item-with-submenu"
-          onMouseEnter={() => setActiveMenu('services')}
-          onMouseLeave={() => setActiveMenu(null)}
-        >
-          <Link to="/services">Services</Link>
-          <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
-            <li>
-              <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions</Link>
-            </li>
-            <li>
-              <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
-            </li>
-            <li>
-              <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
-            </li>
-          </ul>
-        </li>
-        <li
-          className="nav-item-with-submenu"
-          onMouseEnter={() => setActiveMenu('testimonials')}
-          onMouseLeave={() => setActiveMenu(null)}
-        >
-          <Link to="/testimonials">Testimonials</Link>
-          <ul className={`submenu ${activeMenu === 'testimonials' ? 'active' : ''}`}>
-            <li>
-              <Link to="/testimonials" onClick={closeMobileMenu}>All Testimonials</Link>
-            </li>
-            <li>
-              <Link to="/testimonials" onClick={closeMobileMenu}>Client Stories</Link>
-            </li>
-            <li>
-              <Link to="/testimonials" onClick={closeMobileMenu}>Success Cases</Link>
-            </li>
-          </ul>
-        </li>
-        
-        <li>
-          <Link to="/about" onClick={closeMobileMenu}>About</Link>
-        </li>
-        <li>
-          <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
-        </li>
-      </ul>
+      {/* Navigation Links */}
+        <ul className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+          <li>
+            <Link to="/" onClick={closeMobileMenu}>Home</Link>
+          </li>
+          <li
+            className="nav-item-with-submenu"
+            onMouseEnter={() => setActiveMenu('services')}
+            onMouseLeave={() => setActiveMenu(null)}
+          >
+            <Link to="/services">Services</Link>
+            <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions</Link>
+          </li>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
+          </li>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
+          </li>
+            </ul>
+          </li>
+          <li
+            className="nav-item-with-submenu"
+            onMouseEnter={() => setActiveMenu('testimonials')}
+            onMouseLeave={() => setActiveMenu(null)}
+          >
+            <Link to="/testimonials">Testimonials</Link>
+            <ul className={`submenu ${activeMenu === 'testimonials' ? 'active' : ''}`}>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/testimonials" onClick={closeMobileMenu}>All Testimonials</Link>
+          </li>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/testimonials" onClick={closeMobileMenu}>Client Stories</Link>
+          </li>
+          <li style={{ backgroundColor: '#ff7d0cff' }}>
+            <Link to="/testimonials" onClick={closeMobileMenu}>Success Cases</Link>
+          </li>
+            </ul>
+          </li>
+          <li>
+            <Link to="/" onClick={closeMobileMenu}>Home</Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={closeMobileMenu}>About</Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
+          </li>
+        </ul>
 
-      {/* Search Bar - Center */}
+        {/* Search Bar - Center */}
       <div className="navbar-center">
         <div className="search">
           <button className="search-icon" aria-label="Search">

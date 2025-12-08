@@ -5,6 +5,7 @@ import IntroVideo from './components/IntroVideo';
 import HexagonCanvas from './components/HexagonCanvas';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -47,6 +48,7 @@ function App() {
       <Router>
         <div className={`app ${appReady ? 'ready' : ''}`}>
           <HexagonCanvas />
+          <WhatsAppButton />
           {showIntro ? (
             <IntroVideo onTransitionComplete={handleIntroComplete} />
           ) : (
