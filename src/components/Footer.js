@@ -40,7 +40,7 @@ const Footer = () => {
                 <a href="/services">Services</a>
               </li>
               <li>
-                <a href="/testimonials">Testimonials</a>
+                <a href="/projects">Projects</a>
               </li>
             </ul>
           </div>
@@ -68,10 +68,10 @@ const Footer = () => {
                 <a href="mailto:techmatch2k25@gmail.com">techmatch2k25@gmail.com</a>
               </li>
               <li>
-                <a href="tel:+916303319981">Yuvaraj: +91 63033 19981</a>
+                <a href="tel:+916303319981">R.Yuvaraj +91 63033 19981</a>
               </li>
               <li>
-                <a href="tel:+918309583137">Arif Nawaz: +91 83095 83137</a>
+                <a href="tel:+918309583137">sheikh Arif Nawaz +91 83095 83137</a>
               </li>
               <li>#227, #228, 4th Floor, Skanda Mall, Beside D-MART, Ballari Chowrasta, Kurnool - 518003</li>
             </ul>
@@ -80,12 +80,6 @@ const Footer = () => {
             {/* FIREBIRD partner card in footer */}
             <h4>Partner</h4>
             <div className="partner-card" style={{cursor: 'pointer'}} onClick={() => window.open('https://firebird.ac.in','_blank','noopener')}>
-              <div className="partner-logo" aria-hidden="true" style={{width:48,height:48,background:'#eee',display:'inline-block',borderRadius:6,marginRight:8}}>
-                {/* svg placeholder */}
-                <svg width="48" height="48" viewBox="0 0 24 24" xmlns="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDfLJAywDwOhsN_7z_x30u_AIFH8TzNcI5ow&s" aria-hidden="true">
-                  <rect width="24" height="24"  />
-                </svg>
-              </div>
               <div className="partner-info" style={{display:'inline-block',verticalAlign:'top'}}>
                 <div style={{fontWeight:600}}>FIREBIRD — Institute of Research in Management</div>
                 <div style={{fontSize:'0.9em'}}>PGDM · Global MBA · PGP</div>

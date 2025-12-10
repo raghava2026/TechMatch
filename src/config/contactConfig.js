@@ -6,7 +6,7 @@ export const contactConfig = {
   whatsapp: {
     // Phone number format: country code + number (e.g., 919876543210 for India +91-9876543210)
     // NO +, spaces, or hyphens - just the country code followed by the number
-    phoneNumber: '919392423955', // CHANGE THIS TO YOUR WHATSAPP NUMBER
+    phoneNumber: '916303319981', // CHANGE THIS TO YOUR WHATSAPP NUMBER
     defaultMessage: 'Hi TechMatch! I would like to inquire about your services.',
   },
 

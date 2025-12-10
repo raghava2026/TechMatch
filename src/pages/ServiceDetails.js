@@ -237,7 +237,7 @@ const ServiceDetails = () => {
           <span className="hero-icon">{service.icon}</span>
           <h1 style={{ color: service.color }}>{service.title}</h1>
           <p className="hero-tagline">{service.tagline}</p>
-          <Link to="/booking" className="cta-button">
+          <Link to="/Admissions" className="cta-button">
             Get Started Today
           </Link>
         </div>
