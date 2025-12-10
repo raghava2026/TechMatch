@@ -4,13 +4,12 @@ import '../styles/ClientSlider.css';
 const ClientSlider = () => {
   // Client logos - using sample images; replace with actual client logos
   const clientLogos = [
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png',
-    'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png',
+    
+    'https://gyaanarth.com/wp-content/uploads/2022/04/NIMS-uni-logo-1.png',
+	'https://i.pinimg.com/736x/0d/34/ed/0d34edae95e038a379e38d50e9174538.jpg',
+	'https://admission.itmuniversity.ac.in/LP/admission/logos/logo.png',
+	'https://bvrit.ac.in/wp-content/uploads/2023/04/BVRIT-engineering-technology-college-logo-narsapur.webp'
+
   ];
 
   return (
@@ -21,7 +20,7 @@ const ClientSlider = () => {
           {/* First set of logos */}
           {clientLogos.map((logo, idx) => (
             <div key={`logo-1-${idx}`} className="slide">
-              <img src={logo} height="100" width="250" alt="Client logo" />
+              <img src={logo} height="150" width="250" alt="Client logo" />
             </div>
           ))}
           {/* Duplicate set for seamless infinite scroll */}

@@ -1,3 +1,4 @@
+/* container: centered, leaves margins top/bottom on mobile */
 .intro-video-container {
   position: fixed;
   inset: 0;
@@ -7,47 +8,71 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  transition: opacity 400ms ease-in-out, visibility 400ms;
   visibility: visible;
+  padding: 16px;               /* gives breathing room on small screens */
+  box-sizing: border-box;
 }
 
+/* hidden state */
 .intro-video-container.hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
+/* wrapper keeps correct aspect ratio and constrains size */
+.intro-video-wrapper {
+  width: 100%;
+  max-width: 900px;            /* desktop constraint */
+  aspect-ratio: 16 / 9;        /* keeps video ratio */
+  max-height: 80vh;            /* never taller than viewport */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  background: #000;
+}
+
+/* the actual video element — flexible and responsive */
 .intro-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  display: block;
+  object-fit: cover;           /* desktop: fill nicely */
+  background: #000;
 }
 
+/* skip button — accessible and compact */
 .skip-intro {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1.25rem;
+  right: 1.25rem;
   z-index: 11;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #fff;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  backdrop-filter: blur(6px);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* skip hover / active */
 .skip-intro:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 112, 41, 0.5);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-3px);
 }
 
+/* loading overlay (keeps full-screen while loading) */
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -57,7 +82,7 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
 }
 
 .loading-overlay.hidden {
@@ -67,24 +92,48 @@
 
 .loading-text {
   color: rgb(209, 205, 205);
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   animation: pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* MOBILE: make video fit inside viewport without cropping important parts */
+@media (max-width: 768px) {
+  .intro-video-wrapper {
+    max-width: 520px;
+    aspect-ratio: 4 / 3;        /* more vertical on phones when appropriate */
+    max-height: 70vh;          /* leave room above & below */
+    border-radius: 8px;
   }
-  50% {
-    opacity: 0.5;
+  .intro-video {
+    object-fit: contain;       /* prevent cropping on small screens */
+    background: #000;
+  }
+
+  .skip-intro {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+    min-height: 34px;
   }
 }
 
-@media (max-width: 768px) {
+/* very small screens */
+@media (max-width: 420px) {
+  .intro-video-wrapper {
+    max-width: 360px;
+    aspect-ratio: 4 / 3;
+    max-height: 65vh;
+  }
   .skip-intro {
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
   }
 }
