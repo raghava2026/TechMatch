@@ -9,7 +9,7 @@
   --primary-color: #FF7041;
   --primary-dark: #2a2828;
   --secondary-orange: #FFA91B;
-  --text-light: #868686;
+  --text-light: #ffffff;
   --bg-light: #F9F8FD;
   --border-color: #EBECF1;
   --transition: all 0.3s ease;
@@ -53,7 +53,8 @@ h2 {
 
 p {
   line-height: 1.6;
-  color: rgb(209, 205, 205);
+  color: var(--text-light);
+  font-size: 1.05rem;
 }
 
 a {
@@ -97,5 +98,54 @@ a {
 
   body {
     overflow-x: hidden;
+  }
+}
+
+/* Global overrides to ensure readable white text and better mobile spacing */
+/* These use !important to gently override component-specific gray colors */
+body, .page-container, .content-section, .content-section p, .section-intro, .hero-subtitle, p, li, a, span, .stat-card .stat-label, .feature-card p, .aboutus-text, .college-description, .detail-description {
+  color: var(--text-light) !important;
+}
+
+/* Card backgrounds: give cards a subtle gray background to stand out on dark theme */
+.feature-card, .stat-card, .stat-item, .detail-card, .content-block, .aboutus-right .feature-box, .about-quick-stats .stat, .college-card, .card, .cta-section {
+  background: #333333 !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+/* Tweak global spacing on smaller screens to remove excessive whitespace */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem !important;
+  }
+
+  .content-section {
+    padding: 1.25rem !important;
+  }
+
+  .hero-section {
+    padding: 2.5rem 1rem !important;
+  }
+
+  .features-grid, .about-content-grid, .details-grid, .colleges-grid {
+    gap: 1rem !important;
+  }
+
+  .feature-card, .detail-card, .stat-item {
+    padding: 1rem !important;
+  }
+
+  /* Make images responsive inside cards */
+  .college-image, .aboutus-image img, .overview-image img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+}
+
+/* Increase general text size slightly on mobile for readability */
+@media (max-width: 480px) {
+  p, li, .section-intro {
+    font-size: 1.1rem !important;
   }
 }
