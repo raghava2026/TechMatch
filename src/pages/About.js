@@ -36,7 +36,7 @@ const About = () => {
             "logo": typeof window !== 'undefined' ? `${window.location.origin}/assets/logo.png` : '/assets/logo.png',
             "contactPoint": [{
               "@type": "ContactPoint",
-              "telephone": "+1-800-TECH-MATCH",
+              "telephone": "+91-6303319981",
               "contactType": "customer service"
             }]
           })}
@@ -109,6 +109,35 @@ const About = () => {
                 <h3>Asha Rao</h3>
                 <p className="team-role">CTO</p>
                 <p className="team-bio">Expert in cloud architecture and platform engineering, leading large-scale migrations and platform builds.</p>
+              </div>
+            </div>
+
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/yuvaraj.jpg" alt="Yuvaraj, Co-Founder" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Yuvaraj</h3>
+                <p className="team-role">Co-Founder & Lead Admissions Counsellor</p>
+                <p className="team-bio">Former college counsellor with deep experience in Andhra Pradesh entrance guidance, student mentoring and partner relations.</p>
+                <p className="team-contact"><a href="tel:+916303319981">+91 63033 19981</a></p>
+              </div>
+            </div>
+
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/nani.jpg" alt="Nani Prasad, Operations" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Nani Prasad</h3>
+                <p className="team-role">Operations & Program Manager</p>
+                <p className="team-bio">Handles program logistics, school campaigns and operational delivery across Andhra Pradesh and Karnataka.</p>
+              </div>
+            </div>
+
+            <div className="team-card">
+              <img className="team-avatar" src="/assets/arif.jpg" alt="Arif Nawaz, Partnerships" onError={(e)=>{e.target.src='/assets/avatar-placeholder.png'}} />
+              <div className="team-card-body">
+                <h3>Arif Nawaz</h3>
+                <p className="team-role">Partnerships & External Relations</p>
+                <p className="team-bio">Builds and maintains partner relationships, industry linkages and program collaborations.</p>
+                <p className="team-contact"><a href="tel:+918309583137">+91 83095 83137</a></p>
               </div>
             </div>
 

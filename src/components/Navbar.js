@@ -72,7 +72,8 @@ const Navbar = () => {
             <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
           </li>
           <li>
-            <Link to="/services/freelance" onClick={closeMobileMenu}>Freelance</Link>
+            {/* Projects replaces Freelance per product update */}
+            <Link to="/projects" onClick={closeMobileMenu}>Projects</Link>
           </li>
             </ul>
           </li>

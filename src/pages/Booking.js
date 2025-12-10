@@ -5,7 +5,7 @@ import "../styles/Pages.css";
 const BOOKING_WEBHOOK_URL =
   process.env.REACT_APP_BOOKING_WEBHOOK ||
   process.env.REACT_APP_N8N_WEBHOOK ||
-  "https://techmatch.app.n8n.cloud/webhook/techmatch-schudling";
+  "https://techmatch.app.n8n.cloud/webhook-test/techmatch-schudling";
 
 const Booking = () => {
   const timeoutRef = useRef(null);
@@ -70,15 +70,14 @@ const Booking = () => {
     setIsLoading(true);
     setErrors({});
 
+    // Only include the requested entities in the webhook request
     const payload = {
-      user_name: formData.name,
-      user_email: formData.email,
-      user_phone: formData.phone || "",
-      session_duration: formData.sessionDuration,
-      preferred_datetime: formData.preferredDateTime,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || "",
+      sessionDuration: formData.sessionDuration,
+      preferredDateTime: formData.preferredDateTime,
       message: formData.message,
-      submitted_at: new Date().toISOString(),
-      source: "techmatch-website-booking",
     };
 
     try {
@@ -96,10 +95,13 @@ const Booking = () => {
 
       setLastSubmittedEmail(formData.email);
       setSubmitted(true);
+      // Reset form to initial values
       setFormData({
         name: "",
         email: "",
         phone: "",
+        sessionDuration: "30 minutes",
+        preferredDateTime: "",
         message: "",
       });
 
