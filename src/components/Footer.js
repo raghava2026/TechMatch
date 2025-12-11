@@ -78,7 +78,7 @@ const Footer = () => {
           </div>
           <div className="footer-section footer-partner">
             {/* FIREBIRD partner card in footer */}
-            <h4>Partner</h4>
+            <h4>Exclusive Partner</h4>
             <div className="partner-card" style={{cursor: 'pointer'}}
              onClick={() => window.open('https://firebird.ac.in','_blank','noopener')}>
               <div className="partner-info" style={{display:'inline-block',verticalAlign:'top'}}>
