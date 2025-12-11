@@ -60,7 +60,7 @@ const Testimonials = () => {
   return (
     <div className="page-container">
       {/* Hero Section */}
-      <section className="hero-section" style={{ paddingTop: '80px', paddingBottom: '60px' }}>
+        <section className="hero-section testimonials-hero">
         <div className="hero-content">
           <h1 className="hero-title">What Our Clients Say</h1>
           <p className="hero-subtitle">
@@ -70,7 +70,7 @@ const Testimonials = () => {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="testimonials-section" style={{ padding: '60px 20px' }}>
+        <section className="testimonials-section">
         <div className="section-container">
           <div className="testimonials-grid">
             {testimonials.map((testimonial) => (
@@ -107,7 +107,7 @@ const Testimonials = () => {
       <section className="cta-section" style={{ textAlign: 'center' }}>
         <h2>Ready to Be Our Next Success Story?</h2>
         <p>Let's discuss how TechMatch can transform your business</p>
-        <Link to="/booking" className="cta-button large">
+        <Link to="https://techmatch-schudling.lovable.app" className="cta-button large">
           Start Your Journey Today
         </Link>
       </section>

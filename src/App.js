@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import FirebirdModal from './components/FirebirdModal';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -25,7 +26,7 @@ import './styles/App.css';
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [appReady, setAppReady] = useState(false);
-  const [firebirdOpen, setFirebirdOpen] = useState(true);
+  const [firebirdOpen, setFirebirdOpen] = useState(false);
 
   useEffect(() => {
     // Check if intro has been seen before (session storage)
@@ -33,6 +34,20 @@ function App() {
     if (hasSeenIntro === 'true') {
       setShowIntro(false);
       setAppReady(true);
+    }
+
+    // Check if firebird modal has been shown before (persist across visits)
+    try {
+      const hasSeenFirebird = localStorage.getItem('techmatch_firebird_seen');
+      if (!hasSeenFirebird) {
+        // only show after intro completes; set initial open flag to false here
+        // we'll open it when intro is finished (or immediately if intro already skipped)
+        setFirebirdOpen(true);
+      }
+    } catch (err) {
+      // localStorage may be unavailable in some environments; default to showing once per session
+      const hasSeenFirebirdSession = sessionStorage.getItem('techmatch_firebird_seen');
+      if (!hasSeenFirebirdSession) setFirebirdOpen(true);
     }
 
     // Mark app as ready after initial render
@@ -48,13 +63,24 @@ function App() {
     sessionStorage.setItem('techmatch_intro_seen', 'true');
   };
 
+  const handleFirebirdClose = () => {
+    setFirebirdOpen(false);
+    try {
+      localStorage.setItem('techmatch_firebird_seen', 'true');
+    } catch (err) {
+      // fallback to session storage
+      sessionStorage.setItem('techmatch_firebird_seen', 'true');
+    }
+  };
+
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <div className={`app ${appReady ? 'ready' : ''}`}>
           <HexagonCanvas />
           <WhatsAppButton />
-          <FirebirdModal open={firebirdOpen && !showIntro} onClose={() => setFirebirdOpen(false)} />
+          <FirebirdModal open={firebirdOpen && !showIntro} onClose={handleFirebirdClose} />
           {showIntro ? (
             <IntroVideo onTransitionComplete={handleIntroComplete} />
           ) : (
