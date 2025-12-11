@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "node scripts/create-firebase-sourcemap-stub.js"
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "cross-spawn": "^7.0.6"
   }
 }
