@@ -210,7 +210,6 @@ export async function sendPhoneOtpForLinking(phoneNumber, containerId = "recaptc
 /* Confirm & link phone to current user */
 export async function confirmPhoneOtpForLinking(confirmationResult, code) {
   if (!confirmationResult) throw new Error("No confirmation result");
-  const phoneAuthCredential = PhoneAuthProvider.credential(confirmationResult.verificationId || confirmationResult._verificationId, code);
   // sign-in result of confirmationResult.confirm will be a user credential (if used signInWithPhoneNumber)
   // To link: auth.currentUser.linkWithCredential(credential) — but modular SDK requires re-import; we will attempt generic approach:
   if (!auth.currentUser) {

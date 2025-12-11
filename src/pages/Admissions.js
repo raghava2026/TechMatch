@@ -60,7 +60,7 @@ const Admissions = () => {
     }
 
     return list;
-  }, [sectionFilter, colleges, query]);
+  }, [sectionFilter, query]);
 
   return (
     <div className="page-container admissions-page">

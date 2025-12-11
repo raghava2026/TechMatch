@@ -21,13 +21,13 @@ const Projects = () => {
 
         <div className="services-grid" aria-labelledby="projects-heading">
           {projectsList.map((p, idx) => (
-            <article key={p} className="service-card" role="article">
+            <article key={p} className="service-card">
               <div className="service-header">
                 <h3>{p}</h3>
               </div>
               <div className="service-body">
                 <p>We provide tailored services for <strong>{p}</strong>. Contact us to learn about example cases.</p>
-                <a href="#" className="cta-button" aria-label={`Example case for ${p}`}>Example Case</a>
+                <button type="button" className="cta-button" aria-label={`Example case for ${p}`}>Example Case</button>
               </div>
             </article>
           ))}
