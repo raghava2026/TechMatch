@@ -77,8 +77,8 @@ const Home = () => {
             <div className="stat-label">Projects Completed</div>
           </div>
           <div className="stat-card">
-            <div className="stat-number">50+</div>
-            <div className="stat-label">Enterprise Clients</div>
+            <div className="stat-number">1000+</div>
+            <div className="stat-label">Students Counseled</div>
           </div>
           <div className="stat-card">
             <div className="stat-number">3+</div>
