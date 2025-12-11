@@ -158,9 +158,9 @@ const Contact = () => {
                 <div className="contact-icon">📍</div>
                 <div className="contact-text">
                   <h4>Address</h4>
-                  <p>123 Tech Street</p>
-                  <p>Innovation City, IC 12345</p>
-                  <p>United States</p>
+                  <p>#227, #228, 4th Floor</p>
+                  <p>Skanda Mall, Beside D-MART, Ballari Chowrasta</p>
+                  <p>Kurnool - 518003</p>
                 </div>
               </div>
 
@@ -169,9 +169,7 @@ const Contact = () => {
                 <div className="contact-text">
                   <h4>Email</h4>
                   <p>
-                    <a href="mailto:techmatch2k25@gmail.com">
-                      techmatch2k25@gmail.com
-                    </a>
+                    <a href="mailto:techmatch2k25@gmail.com">techmatch2k25@gmail.com</a>
                   </p>
                 </div>
               </div>
@@ -181,7 +179,10 @@ const Contact = () => {
                 <div className="contact-text">
                   <h4>Phone</h4>
                   <p>
-                    <a href="tel:+18008324825">+1 (800) TECH-MATCH</a>
+                    <a href="tel:+916303319981">R. Yuvaraj: +91 63033 19981</a>
+                  </p>
+                  <p>
+                    <a href="tel:+918309583137">Shaik Arif Nawaz: +91 83095 83137</a>
                   </p>
                 </div>
               </div>

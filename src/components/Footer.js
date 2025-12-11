@@ -73,13 +73,14 @@ const Footer = () => {
               <li>
                 <a href="tel:+918309583137">Shaik Arif Nawaz +91 83095 83137</a>
               </li>
-              <li>#227, #228, 4th Floor, Skanda Mall, Beside D-MART, Ballari Chowrasta, Kurnool - 518003</li>
+              <li>#227,#228, 4th Floor, Skanda Mall, Beside D-MART, Ballari Chowrasta, Kurnool - 518003</li>
             </ul>
           </div>
           <div className="footer-section footer-partner">
             {/* FIREBIRD partner card in footer */}
             <h4>Partner</h4>
-            <div className="partner-card" style={{cursor: 'pointer'}} onClick={() => window.open('https://firebird.ac.in','_blank','noopener')}>
+            <div className="partner-card" style={{cursor: 'pointer'}}
+             onClick={() => window.open('https://firebird.ac.in','_blank','noopener')}>
               <div className="partner-info" style={{display:'inline-block',verticalAlign:'top'}}>
                 <div style={{fontWeight:600}}>FIREBIRD — Institute of Research in Management</div>
                 <div style={{fontSize:'0.9em'}}>PGDM · Global MBA · PGP</div>
