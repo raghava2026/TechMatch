@@ -36,7 +36,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/" className="nav-logo" onClick={closeMobileMenu}>
-          <img src="/assets/techmathch_logo.png" alt="TechMatch" className="logo-image" />
+          <img src="/assets/Favicon.png" alt="TechMatch" className="logo-image" />
           <span className="brand">TECH <span className="brand-match">MATCH</span></span>
         </Link>
       </div>
@@ -51,45 +51,45 @@ const Navbar = () => {
       </button>
 
       {/* Navigation Links */}
-        <ul className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <li>
-            <Link to="/" onClick={closeMobileMenu}>Home</Link>
-          </li>
-          <li>
-            <Link to="/admissions" onClick={closeMobileMenu}>Admissions</Link>
-          </li>
-          <li
-            className="nav-item-with-submenu"
-            onMouseEnter={() => setActiveMenu('services')}
-            onMouseLeave={() => setActiveMenu(null)}
-          >
-            <Link to="/services">Services</Link>
-            <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
-          <li >
-            <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions Details</Link>
-          </li>
-          <li>
-            <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
-          </li>
-          <li>
-            {/* Projects replaces Freelance per product update */}
-            <Link to="/projects" onClick={closeMobileMenu}>Projects</Link>
-          </li>
-            </ul>
-          </li>
-          <li>
-            <Link to="/testimonials"   onClick={closeMobileMenu}>Testimonials</Link>
-          </li>
-          
-          <li>
-            <Link to="/about" onClick={closeMobileMenu}>About</Link>
-          </li>
-          <li>
-            <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
-          </li>
-        </ul>
+      <ul className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+        <li>
+          <Link to="/" onClick={closeMobileMenu}>Home</Link>
+        </li>
+        <li>
+          <Link to="/admissions" onClick={closeMobileMenu}>Admissions</Link>
+        </li>
+        <li
+          className="nav-item-with-submenu"
+          onMouseEnter={() => setActiveMenu('services')}
+          onMouseLeave={() => setActiveMenu(null)}
+        >
+          <Link to="/services">Services</Link>
+          <ul className={`submenu ${activeMenu === 'services' ? 'active' : ''}`}>
+            <li >
+              <Link to="/services/admissions" onClick={closeMobileMenu}>Admissions Details</Link>
+            </li>
+            <li>
+              <Link to="/services/counselling" onClick={closeMobileMenu}>Counselling</Link>
+            </li>
+            <li>
+              {/* Projects replaces Freelance per product update */}
+              <Link to="/projects" onClick={closeMobileMenu}>Projects</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <Link to="/testimonials" onClick={closeMobileMenu}>Testimonials</Link>
+        </li>
 
-        {/* Search Bar - Center */}
+        <li>
+          <Link to="/about" onClick={closeMobileMenu}>About</Link>
+        </li>
+        <li>
+          <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
+        </li>
+      </ul>
+
+      {/* Search Bar - Center */}
       <div className="navbar-center">
         <div className="search">
           <button className="search-icon" aria-label="Search">
@@ -115,7 +115,7 @@ const Navbar = () => {
           <span className="loading-text">Loading...</span>
         ) : user ? (
           <div className="user-profile-menu">
-            <button 
+            <button
               className="profile-button"
               onClick={() => setProfileMenuOpen(!profileMenuOpen)}
               title="Profile menu"
@@ -123,7 +123,7 @@ const Navbar = () => {
               <FiUser size={20} />
               <FiChevronDown size={16} className={`chevron ${profileMenuOpen ? 'open' : ''}`} />
             </button>
-            
+
             {/* Profile Dropdown */}
             {profileMenuOpen && (
               <div className="profile-dropdown">
@@ -142,18 +142,18 @@ const Navbar = () => {
                     <p className="profile-email">{user.email}</p>
                   </div>
                 </div>
-                
+
                 <hr className="dropdown-divider" />
-                
+
                 <div className="dropdown-actions">
-                  <Link 
-                    to="/dashboard" 
+                  <Link
+                    to="/dashboard"
                     className="dropdown-item"
                     onClick={() => setProfileMenuOpen(false)}
                   >
                     <FiUser size={16} /> Dashboard
                   </Link>
-                  <button 
+                  <button
                     className="dropdown-item logout-btn"
                     onClick={handleLogout}
                     disabled={signingOut}

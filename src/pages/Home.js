@@ -12,7 +12,7 @@ const Home = () => {
 
       {/* Client Slider */}
       <ClientSlider />
- 
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
