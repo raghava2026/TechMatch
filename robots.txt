@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Allow important assets
+Allow: /assets/
+Allow: /static/
+Allow: /images/
+
+# Block unnecessary internal paths
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://techmatch.in/sitemap.xml
+Sitemap: https://techmatch.in/
+Sitemap: https://techmatch.in/about
+Sitemap: https://techmatch.in/services
+Sitemap: https://techmatch.in/admissions
+Sitemap: https://techmatch.in/projects
+Sitemap: https://techmatch.in/contact
+
