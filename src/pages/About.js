@@ -64,6 +64,14 @@ export default function About() {
       img: "/assets/vicky.jpg",
       phone: ORG.phoneYuvaraj,
     },
+    {
+      id: "vishal",
+      name: "",
+      title: "Operations & Program Manager",
+      bio: "Leads program logistics, school campaigns and delivery across Andhra Pradesh and Karnataka.",
+      img: "/assets/vishal.jpg",
+      phone: ORG.phoneYuvaraj,
+    },
   ];
 
   // Helper for missing images
