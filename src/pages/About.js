@@ -57,11 +57,11 @@ export default function About() {
       phone: ORG.phoneArif,
     },
     {
-      id: "nani",
-      name: "Nani Prasad",
+      id: "vicky",
+      name: "Vicky",
       title: "Operations & Program Manager",
       bio: "Leads program logistics, school campaigns and delivery across Andhra Pradesh and Karnataka.",
-      img: "/assets/nani.jpg",
+      img: "/assets/vicky.jpg",
       phone: ORG.phoneYuvaraj,
     },
   ];

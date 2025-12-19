@@ -66,7 +66,7 @@ const SignUp = () => {
         setMethod("phone");
         // continue to phone linking
       } else {
-          setTimeout(() => navigate("/"), 2000);
+        setTimeout(() => navigate("/"), 2000);
       }
     } catch (err) {
       setError(err.message || String(err));
@@ -106,7 +106,7 @@ const SignUp = () => {
         await saveUserToFirestore(res.user);
         setSuccessMessage("Phone verified and account created. Redirecting...");
       }
-        setTimeout(() => navigate('/'), 1200);
+      setTimeout(() => navigate('/'), 1200);
     } catch (err) {
       setError(err.message || String(err));
     } finally {

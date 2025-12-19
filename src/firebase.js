@@ -171,7 +171,7 @@ export function setupRecaptcha(containerId = "recaptcha-container", size = "invi
     _recaptchaVerifier = new RecaptchaVerifier(containerId, { size }, auth);
     // optional render
     if (_recaptchaVerifier.render) {
-      _recaptchaVerifier.render().catch(() => {});
+      _recaptchaVerifier.render().catch(() => { });
     }
   } catch (err) {
     // eslint-disable-next-line no-console
