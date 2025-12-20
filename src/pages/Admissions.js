@@ -161,12 +161,12 @@ const Admissions = () => {
                 <p className="college-description">{college.description || ''}</p>
 
                 <a
-                  href={college.website}
+                  href={college.more}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="more-info-btn"
                 >
-                  Visit Website
+                  More Info
                 </a>
               </div>
             </div>
