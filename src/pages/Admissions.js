@@ -11,7 +11,7 @@ const Admissions = () => {
   const searchInputRef = useRef(null);
 
   // Colleges and universities list (complete data from user)
- 
+
   // Section-based filters requested by user
   const sections = useMemo(() => [
     'All',
@@ -71,8 +71,37 @@ const Admissions = () => {
           Explore top colleges and universities across India. Find the perfect institution for your academic journey.
         </p>
         <br></br>
-        <a class = "cta-button" href="https://techmatch-schudling.lovable.app">Book Your Session</a>
-        
+
+        {/* Law Studies Card */}
+        <div className="law-studies-card">
+          <div className="card-image-container">
+            <img
+              src="/assets/law-studies-banner.jpg"
+              alt="Law Studies - Combine Bachelor's Degree with BA LLB, BBA LLB, BCOM LLB, BSC LLB, and BTECH LLB"
+              className="card-banner-image"
+            />
+          </div>
+          <div className="card-content">
+            <h3 className="card-title">Law Studies Available</h3>
+            <p className="card-description">
+              Looking to combine your Bachelor's degree with Law? We offer comprehensive guidance for integrated law programs including:
+            </p>
+            <ul className="law-programs-list">
+              <li>📚 BA LLB - Arts with Law</li>
+              <li>💼 BBA LLB - Business Administration with Law</li>
+              <li>📊 BCOM LLB - Commerce with Law</li>
+              <li>🔬 BSC LLB - Science with Law</li>
+              <li>⚙️ BTECH LLB - Technology with Law</li>
+            </ul>
+            <a className="card-cta-button" href="https://techmatch-schudling.lovable.app" target="_blank" rel="noopener noreferrer">
+              Book Your Session Now
+            </a>
+          </div>
+        </div>
+
+        <br></br>
+        <a className="cta-button" href="https://techmatch-schudling.lovable.app">Book Your Session</a>
+
       </section>
 
       {/* Content Section */}
